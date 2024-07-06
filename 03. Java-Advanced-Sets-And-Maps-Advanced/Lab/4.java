@@ -1,4 +1,4 @@
-package org.example;
+package class02;
 
 import java.util.*;
 
