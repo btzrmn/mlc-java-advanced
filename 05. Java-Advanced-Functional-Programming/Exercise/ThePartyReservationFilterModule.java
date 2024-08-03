@@ -33,7 +33,11 @@ public class ThePartyReservationFilterModule {
             input = sc.nextLine();
         }
 
-        filter(names, filters);
+        for (Map.Entry<String, HashMap<String, Predicate<String>>> entry : filters.entrySet()) {
+            for (Map.Entry<String, Predicate<String>> innerEntry : entry.getValue().entrySet()) {
+                names.removeIf(innerEntry.getValue());
+            }
+        }
 
         System.out.println(String.join(" ", names));
     }
