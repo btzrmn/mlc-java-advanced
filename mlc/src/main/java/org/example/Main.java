@@ -1,38 +1,55 @@
 package org.example;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.*;
-import java.util.stream.Collectors;
 
 public class Main {
-    public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
-        String[] command1 = scanner.nextLine().split(": ");
-        int[] coins = Arrays.stream(command1[1].split(", "))
-                .mapToInt(Integer::parseInt).toArray();
-        String[] command2 = scanner.nextLine().split(": ");
-        int sum = Integer.parseInt(command2[1]);
-        Map<Integer, Integer> map = chooseCoins(coins, sum);
-        for (Map.Entry<Integer, Integer> entry : map.entrySet()) {
-            System.out.printf("%d -> %d%n", entry.getKey(), entry.getValue());
+    public static void main(String[] args) throws IOException {
+        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+        String[] elements = reader.readLine().substring(10).split(", ");
+        int[] universe = Arrays.stream(elements).mapToInt(Integer::parseInt).toArray();
+        int numberOfSets = Integer.parseInt(reader.readLine().substring(16));
+        List<int[]> sets = new ArrayList<>();
+        for (int i = 0; i < numberOfSets; i++) {
+            int[] values = Arrays.stream(reader.readLine().split(", "))
+                    .mapToInt(Integer::parseInt).toArray();
+            sets.add(values);
+        }
+        List<int[]> values = chooseSets(sets, universe);
+        System.out.printf("Sets to take (%d):%n", values.size());
+        for (int[] value : values) {
+            System.out.println("{ " + Arrays.toString(value).replaceAll("[\\[\\]]", "") + " }");
         }
     }
 
-    public static Map<Integer, Integer> chooseCoins(int[] coins, int sum) {
-        List<Integer> listCoins = Arrays.stream(coins).boxed()
-                .sorted(Collections.reverseOrder()).collect(Collectors.toList());
-        Map<Integer, Integer> map = new LinkedHashMap<>();
-        int currentSum = 0;
-        int coinIndex = 0;
-        while (currentSum != sum && coinIndex < listCoins.size()) {
-            int currentCoin = listCoins.get(coinIndex);
-            int remainder = sum - currentSum;
-            int sizeOfCoin = remainder / currentCoin;
-            if (currentSum + currentCoin <= sum) {
-                map.put(currentCoin, sizeOfCoin);
-                currentSum = currentSum + sizeOfCoin * currentCoin;
-            }
-            coinIndex++;
+    public static List<int[]> chooseSets(List<int[]> sets, int[] universe) {
+        List<int[]> selectedSets = new ArrayList<>();
+        Set<Integer> universeSet = new HashSet<>();
+        for (int element : universe) {
+            universeSet.add(element);
         }
-        return map;
+        while (!universeSet.isEmpty()) {
+            int notChosenCount = 0;
+            int[] chosenSet = sets.get(0);
+            for (int[] set : sets) {
+                int count = 0;
+                for (int elem : set) {
+                    if (universeSet.contains(elem)) {
+                        count++;
+                    }
+                }
+                if (notChosenCount < count) {
+                    notChosenCount = count;
+                    chosenSet = set;
+                }
+            }
+            selectedSets.add(chosenSet);
+            for (int elem : chosenSet) {
+                universeSet.remove(elem);
+            }
+        }
+        return selectedSets;
     }
 }
