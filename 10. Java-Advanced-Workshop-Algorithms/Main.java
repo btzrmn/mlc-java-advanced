@@ -1,10 +1,8 @@
-package org.example;
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.*;
-import java.util.stream.Collectors;
+
 
 public class Main {
     public static void main(String[] args) throws IOException {
@@ -35,5 +33,38 @@ public class Main {
         }
         System.out.println(sb);
     }
+
+    public static List<int[]> chooseSets(
+            List<int[]> sets, int[] universe) {
+        List<int[]> selectedSets = new ArrayList<>();
+        Set<Integer> universeSet = new HashSet<>();
+        for (int element : universe) {
+            universeSet.add(element);
+        }
+        while (!universeSet.isEmpty()) {
+            int notChosenCount = 0;
+            int[] chosenSet = sets.get(0);
+            for (int[] set : sets) {
+                int count = 0;
+                for (int elem : set) {
+                    if (universeSet.contains(elem)) {
+                        count++;
+                    }
+                }
+                if (notChosenCount < count) {
+                    notChosenCount = count;
+                    chosenSet = set;
+                }
+
+            }
+            selectedSets.add(chosenSet);
+            for (int elem : chosenSet) {
+                universeSet.remove(elem);
+            }
+
+        }
+        return selectedSets;
+    }
+
 
 }
