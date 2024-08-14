@@ -7,8 +7,8 @@ public class ReVolt {
         int n = Integer.parseInt(scanner.nextLine());
         int countCommands = Integer.parseInt(scanner.nextLine());
 
-        int playerRow = 0;
-        int playerCol = 0;
+        int x = 0;
+        int y = 0;
 
         char[][] matrix = new char[n][n];
         for (int row = 0; row < matrix.length; row++) {
@@ -16,8 +16,8 @@ public class ReVolt {
             for (int col = 0; col < matrix[row].length; col++) {
                 matrix[row][col] = input.charAt(col);
                 if (input.charAt(col) == 'f') {
-                    playerRow = row;
-                    playerCol = col;
+                    x = row;
+                    y = col;
                 }
 
             }
@@ -33,58 +33,58 @@ public class ReVolt {
             String command = scanner.nextLine();
             switch (command) {
                 case "up":
-                    //                    playerRow -= 1;
-                    if (isValidIndex(playerRow - 1, playerCol, matrix)) {
-                        if (matrix[playerRow - 1][playerCol] == '-') {
-                            matrix[playerRow][playerCol] = '-';
-                            matrix[playerRow - 1][playerCol] = 'f';
-                            playerRow -= 1;
-                        } else if (matrix[playerRow - 1][playerCol] == 'B') {
-                            matrix[playerRow][playerCol] = '-';
-                            playerRow -= 1;
-                            if (isValidIndex(playerRow - 1, playerCol, matrix)) {
-                                if (matrix[playerRow - 1][playerCol] == 'F') {
-                                    matrix[playerRow - 1][playerCol] = 'f';
+                    //                    x -= 1;
+                    if (isValidIndex(x - 1, y, matrix)) {
+                        if (matrix[x - 1][y] == '-') {
+                            matrix[x][y] = '-';
+                            matrix[x - 1][y] = 'f';
+                            x -= 1;
+                        } else if (matrix[x - 1][y] == 'B') {
+                            matrix[x][y] = '-';
+                            x -= 1;
+                            if (isValidIndex(x - 1, y, matrix)) {
+                                if (matrix[x - 1][y] == 'F') {
+                                    matrix[x - 1][y] = 'f';
                                     isFound = true;
                                     break;
                                 } else {
-                                    matrix[playerRow - 1][playerCol] = 'f';
-                                    playerRow -= 1;
+                                    matrix[x - 1][y] = 'f';
+                                    x -= 1;
                                 }
                             } else {
-                                playerRow = matrix.length - 1;
-                                if (matrix[playerRow][playerCol] == 'F') {
-                                    matrix[playerRow][playerCol] = 'f';
+                                x = matrix.length - 1;
+                                if (matrix[x][y] == 'F') {
+                                    matrix[x][y] = 'f';
                                     isFound = true;
                                     break;
                                 } else {
-                                    matrix[playerRow][playerCol] = 'f';
+                                    matrix[x][y] = 'f';
                                 }
                             }
-                        } else if (matrix[playerRow - 1][playerCol] == 'F') {
-                            matrix[playerRow][playerCol] = '-';
-                            matrix[playerRow - 1][playerCol] = 'f';
+                        } else if (matrix[x - 1][y] == 'F') {
+                            matrix[x][y] = '-';
+                            matrix[x - 1][y] = 'f';
                             isFound = true;
                             break;
                         }
                     } else {
-                        playerRow = matrix.length - 1;
-                        if (matrix[playerRow][playerCol] == '-') {
-                            matrix[0][playerCol] = '-';
-                            matrix[playerRow][playerCol] = 'f';
-                        } else if (matrix[playerRow][playerCol] == 'B') {
-                            matrix[0][playerCol] = '-';
-                            if (matrix[playerRow - 1][playerCol] == 'F') {
-                                matrix[playerRow - 1][playerCol] = 'f';
+                        x = matrix.length - 1;
+                        if (matrix[x][y] == '-') {
+                            matrix[0][y] = '-';
+                            matrix[x][y] = 'f';
+                        } else if (matrix[x][y] == 'B') {
+                            matrix[0][y] = '-';
+                            if (matrix[x - 1][y] == 'F') {
+                                matrix[x - 1][y] = 'f';
                                 isFound = true;
                                 break;
                             } else {
-                                matrix[playerRow - 1][playerCol] = 'f';
-                                playerRow -= 1;
+                                matrix[x - 1][y] = 'f';
+                                x -= 1;
                             }
-                        } else if (matrix[playerRow][playerCol] == 'F') {
-                            matrix[0][playerCol] = '-';
-                            matrix[playerRow][playerCol] = 'f';
+                        } else if (matrix[x][y] == 'F') {
+                            matrix[0][y] = '-';
+                            matrix[x][y] = 'f';
                             isFound = true;
                             break;
                         }
@@ -92,58 +92,58 @@ public class ReVolt {
 
                     break;
                 case "down":
-//                    playerRow += 1;
-                    if (isValidIndex(playerRow + 1, playerCol, matrix)) {
-                        if (matrix[playerRow + 1][playerCol] == '-') {
-                            matrix[playerRow][playerCol] = '-';
-                            matrix[playerRow + 1][playerCol] = 'f';
-                            playerRow += 1;
-                        } else if (matrix[playerRow + 1][playerCol] == 'B') {
-                            matrix[playerRow][playerCol] = '-';
-                            playerRow += 1;
-                            if (isValidIndex(playerRow + 1, playerCol, matrix)) {
-                                if (matrix[playerRow + 1][playerCol] == 'F') {
-                                    matrix[playerRow + 1][playerCol] = 'f';
+//                    x += 1;
+                    if (isValidIndex(x + 1, y, matrix)) {
+                        if (matrix[x + 1][y] == '-') {
+                            matrix[x][y] = '-';
+                            matrix[x + 1][y] = 'f';
+                            x += 1;
+                        } else if (matrix[x + 1][y] == 'B') {
+                            matrix[x][y] = '-';
+                            x += 1;
+                            if (isValidIndex(x + 1, y, matrix)) {
+                                if (matrix[x + 1][y] == 'F') {
+                                    matrix[x + 1][y] = 'f';
                                     isFound = true;
                                     break;
                                 } else {
-                                    matrix[playerRow + 1][playerCol] = 'f';
-                                    playerRow += 1;
+                                    matrix[x + 1][y] = 'f';
+                                    x += 1;
                                 }
                             } else {
-                                playerRow = 0;
-                                if (matrix[playerRow][playerCol] == 'F') {
-                                    matrix[playerRow][playerCol] = 'f';
+                                x = 0;
+                                if (matrix[x][y] == 'F') {
+                                    matrix[x][y] = 'f';
                                     isFound = true;
                                     break;
                                 } else {
-                                    matrix[playerRow][playerCol] = 'f';
+                                    matrix[x][y] = 'f';
                                 }
                             }
-                        } else if (matrix[playerRow + 1][playerCol] == 'F') {
-                            matrix[playerRow][playerCol] = '-';
-                            matrix[playerRow + 1][playerCol] = 'f';
+                        } else if (matrix[x + 1][y] == 'F') {
+                            matrix[x][y] = '-';
+                            matrix[x + 1][y] = 'f';
                             isFound = true;
                             break;
                         }
                     } else {
-                        playerRow = 0;
-                        if (matrix[playerRow][playerCol] == '-') {
-                            matrix[matrix.length - 1][playerCol] = '-';
-                            matrix[playerRow][playerCol] = 'f';
-                        } else if (matrix[playerRow][playerCol] == 'B') {
-                            matrix[matrix.length - 1][playerCol] = '-';
-                            if (matrix[playerRow + 1][playerCol] == 'F') {
-                                matrix[playerRow + 1][playerCol] = 'f';
+                        x = 0;
+                        if (matrix[x][y] == '-') {
+                            matrix[matrix.length - 1][y] = '-';
+                            matrix[x][y] = 'f';
+                        } else if (matrix[x][y] == 'B') {
+                            matrix[matrix.length - 1][y] = '-';
+                            if (matrix[x + 1][y] == 'F') {
+                                matrix[x + 1][y] = 'f';
                                 isFound = true;
                                 break;
                             } else {
-                                matrix[playerRow + 1][playerCol] = 'f';
-                                playerRow += 1;
+                                matrix[x + 1][y] = 'f';
+                                x += 1;
                             }
-                        } else if (matrix[playerRow][playerCol] == 'F') {
-                            matrix[matrix.length - 1][playerCol] = '-';
-                            matrix[playerRow][playerCol] = 'f';
+                        } else if (matrix[x][y] == 'F') {
+                            matrix[matrix.length - 1][y] = '-';
+                            matrix[x][y] = 'f';
                             isFound = true;
                             break;
                         }
@@ -151,59 +151,59 @@ public class ReVolt {
 
                     break;
                 case "left":
-//                    playerCol -= 1;
-                    if (isValidIndex(playerRow, playerCol - 1, matrix)) {
-                        if (matrix[playerRow][playerCol - 1] == '-') {
-                            matrix[playerRow][playerCol] = '-';
-                            matrix[playerRow][playerCol - 1] = 'f';
-                            playerCol -= 1;
-                        } else if (matrix[playerRow][playerCol - 1] == 'B') {
-                            matrix[playerRow][playerCol] = '-';
-                            playerCol -= 1;
-                            if (isValidIndex(playerRow, playerCol - 1, matrix)) {
-                                if (matrix[playerRow][playerCol - 1] == 'F') {
-                                    matrix[playerRow][playerCol - 1] = 'f';
+//                    y -= 1;
+                    if (isValidIndex(x, y - 1, matrix)) {
+                        if (matrix[x][y - 1] == '-') {
+                            matrix[x][y] = '-';
+                            matrix[x][y - 1] = 'f';
+                            y -= 1;
+                        } else if (matrix[x][y - 1] == 'B') {
+                            matrix[x][y] = '-';
+                            y -= 1;
+                            if (isValidIndex(x, y - 1, matrix)) {
+                                if (matrix[x][y - 1] == 'F') {
+                                    matrix[x][y - 1] = 'f';
                                     isFound = true;
                                     break;
                                 } else {
-                                    matrix[playerRow][playerCol - 1] = 'f';
-                                    playerCol -= 1;
+                                    matrix[x][y - 1] = 'f';
+                                    y -= 1;
                                 }
                             } else {
-                                playerCol = matrix[playerRow].length - 1;
-                                if (matrix[playerRow][playerCol] == 'F') {
-                                    matrix[playerRow][playerCol] = 'f';
+                                y = matrix[x].length - 1;
+                                if (matrix[x][y] == 'F') {
+                                    matrix[x][y] = 'f';
                                     isFound = true;
                                     break;
                                 } else {
-                                    matrix[playerRow][playerCol] = 'f';
+                                    matrix[x][y] = 'f';
                                 }
                             }
-                        } else if (matrix[playerRow][playerCol - 1] == 'F') {
-                            matrix[playerRow][playerCol] = '-';
-                            matrix[playerRow][playerCol - 1] = 'f';
+                        } else if (matrix[x][y - 1] == 'F') {
+                            matrix[x][y] = '-';
+                            matrix[x][y - 1] = 'f';
                             isFound = true;
                             break;
                         }
                     } else {
-                        playerCol = matrix[playerRow].length - 1;
-                        if (matrix[playerRow][playerCol] == '-') {
-                            matrix[playerRow][0] = '-';
-                            matrix[playerRow][playerCol] = 'f';
-                        } else if (matrix[playerRow][playerCol] == 'B') {
-                            matrix[playerRow][0] = '-';
-                            if ( matrix[playerRow][playerCol - 1] == 'F') {
-                                matrix[playerRow][playerCol - 1] = 'f';
+                        y = matrix[x].length - 1;
+                        if (matrix[x][y] == '-') {
+                            matrix[x][0] = '-';
+                            matrix[x][y] = 'f';
+                        } else if (matrix[x][y] == 'B') {
+                            matrix[x][0] = '-';
+                            if ( matrix[x][y - 1] == 'F') {
+                                matrix[x][y - 1] = 'f';
                                 isFound = true;
                                 break;
                             } else {
-                                matrix[playerRow][playerCol - 1] = 'f';
-                                playerCol -= 1;
+                                matrix[x][y - 1] = 'f';
+                                y -= 1;
 
                             }
-                        } else if (matrix[playerRow][playerCol] == 'F') {
-                            matrix[playerRow][0] = '-';
-                            matrix[playerRow][playerCol] = 'f';
+                        } else if (matrix[x][y] == 'F') {
+                            matrix[x][0] = '-';
+                            matrix[x][y] = 'f';
                             isFound = true;
                             break;
                         }
@@ -211,58 +211,58 @@ public class ReVolt {
 
                     break;
                 case "right":
-//                    playerCol += 1;
-                    if (isValidIndex(playerRow, playerCol + 1, matrix)) {
-                        if (matrix[playerRow][playerCol + 1] == '-') {
-                            matrix[playerRow][playerCol] = '-';
-                            matrix[playerRow][playerCol + 1] = 'f';
-                            playerCol += 1;
-                        } else if (matrix[playerRow][playerCol + 1] == 'B') {
-                            matrix[playerRow][playerCol] = '-';
-                            playerCol += 1;
-                            if (isValidIndex(playerRow, playerCol + 1, matrix)) {
-                                if (matrix[playerRow][playerCol + 1] == 'F') {
-                                    matrix[playerRow][playerCol + 1] = 'f';
+//                    y += 1;
+                    if (isValidIndex(x, y + 1, matrix)) {
+                        if (matrix[x][y + 1] == '-') {
+                            matrix[x][y] = '-';
+                            matrix[x][y + 1] = 'f';
+                            y += 1;
+                        } else if (matrix[x][y + 1] == 'B') {
+                            matrix[x][y] = '-';
+                            y += 1;
+                            if (isValidIndex(x, y + 1, matrix)) {
+                                if (matrix[x][y + 1] == 'F') {
+                                    matrix[x][y + 1] = 'f';
                                     isFound = true;
                                     break;
                                 } else {
-                                    matrix[playerRow][playerCol + 1] = 'f';
-                                    playerCol += 1;
+                                    matrix[x][y + 1] = 'f';
+                                    y += 1;
                                 }
                             } else {
-                                playerCol = 0;
-                                if (matrix[playerRow][playerCol] == 'F') {
-                                    matrix[playerRow][playerCol] = 'f';
+                                y = 0;
+                                if (matrix[x][y] == 'F') {
+                                    matrix[x][y] = 'f';
                                     isFound = true;
                                     break;
                                 } else {
-                                    matrix[playerRow][playerCol] = 'f';
+                                    matrix[x][y] = 'f';
                                 }
                             }
-                        } else if (matrix[playerRow][playerCol + 1] == 'F') {
-                            matrix[playerRow][playerCol] = '-';
-                            matrix[playerRow][playerCol + 1] = 'f';
+                        } else if (matrix[x][y + 1] == 'F') {
+                            matrix[x][y] = '-';
+                            matrix[x][y + 1] = 'f';
                             System.out.println("Player won!");
                             break;
                         }
                     } else {
-                        playerCol = 0;
-                        if (matrix[playerRow][playerCol] == '-') {
-                            matrix[playerRow][matrix[playerRow].length - 1] = '-';
-                            matrix[playerRow][playerCol] = 'f';
-                        } else if (matrix[playerRow][playerCol] == 'B') {
-                            matrix[playerRow][matrix[playerRow].length - 1] = '-';
-                            if (matrix[playerRow][playerCol + 1] == 'F') {
-                                matrix[playerRow][playerCol + 1] = 'f';
+                        y = 0;
+                        if (matrix[x][y] == '-') {
+                            matrix[x][matrix[x].length - 1] = '-';
+                            matrix[x][y] = 'f';
+                        } else if (matrix[x][y] == 'B') {
+                            matrix[x][matrix[x].length - 1] = '-';
+                            if (matrix[x][y + 1] == 'F') {
+                                matrix[x][y + 1] = 'f';
                                 isFound = true;
                                 break;
                             } else {
-                                matrix[playerRow][playerCol + 1] = 'f';
-                                playerCol += 1;
+                                matrix[x][y + 1] = 'f';
+                                y += 1;
                             }
-                        } else if (matrix[playerRow][playerCol] == 'F') {
-                            matrix[playerRow][matrix[playerRow].length - 1] = '-';
-                            matrix[playerRow][playerCol] = 'f';
+                        } else if (matrix[x][y] == 'F') {
+                            matrix[x][matrix[x].length - 1] = '-';
+                            matrix[x][y] = 'f';
                             isFound = true;
                             break;
                         }
@@ -282,9 +282,9 @@ public class ReVolt {
 
     }
 
-    private static boolean isValidIndex(int playerRow, int playerCol, char[][] matrix) {
-        return playerRow >= 0 && playerRow < matrix.length
-                && playerCol >= 0 && playerCol < matrix[playerRow].length;
+    private static boolean isValidIndex(int x, int y, char[][] matrix) {
+        return x >= 0 && x < matrix.length
+                && y >= 0 && y < matrix[x].length;
     }
 
     private static void printMatrix(char[][] matrix) {
