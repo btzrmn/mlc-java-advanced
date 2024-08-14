@@ -1,4 +1,4 @@
-package org.example;
+package vetClinic;
 
 public class Pet {
     private String name;
@@ -37,6 +37,6 @@ public class Pet {
 
     @Override
     public String toString() {
-        return name + " " + age + " " + "(" + owner + ")";
+        return this.name + " " + this.age + " (" + this.owner + ")";
     }
 }
