@@ -1,4 +1,4 @@
-package vetClinic;
+package mlc;
 
 import java.util.ArrayList;
 import java.util.List;

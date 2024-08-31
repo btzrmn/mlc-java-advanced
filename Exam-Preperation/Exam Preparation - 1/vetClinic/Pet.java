@@ -1,4 +1,4 @@
-package vetClinic;
+package mlc;
 
 public class Pet {
     private String name;
