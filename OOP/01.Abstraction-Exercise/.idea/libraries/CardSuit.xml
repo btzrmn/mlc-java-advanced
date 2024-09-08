@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="CardSuit">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/CardSuit/CardSuit.zip!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

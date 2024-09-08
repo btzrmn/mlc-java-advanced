@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="JediGalaxy">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/JediGalaxy/JediGalaxy.zip!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

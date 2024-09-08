@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="CardWithPower">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/CardWithPower/CardWithPower.zip!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

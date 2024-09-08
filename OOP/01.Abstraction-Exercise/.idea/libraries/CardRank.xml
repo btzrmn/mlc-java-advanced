@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="CardRank">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/CardRank/CardRank.zip!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

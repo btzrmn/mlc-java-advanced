@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="GreedyTimes">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/GreedyTimes/GreedyTimes.zip!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
